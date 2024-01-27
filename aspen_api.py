@@ -5,7 +5,8 @@ class aspen:
         self.path = path
     
     def func(self, x):
-        y1 = np.sqrt(np.absolute(np.sin(np.sqrt(np.absolute(x[0]**2+x[1]**2)))))+0.01*(x[0]+x[1])
+        # y1 = np.sqrt(np.absolute(np.sin(np.sqrt(np.absolute(x[0]**2+x[1]**2)))))+0.01*(x[0]+x[1])
+        y1 = -x[0]*x[1]*(72-2*x[0]-2*x[1])
         y2 = 2*x[0]+3*x[1]-2
 
         y = [y1, y2]

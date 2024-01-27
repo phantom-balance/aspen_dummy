@@ -9,7 +9,7 @@ def make_csv(X_val, Y_val, column_lab, file_name="data.csv"):
     data_arr = np.hstack((X_arr, Y_arr))
     df = pd.DataFrame(data_arr, columns=column_lab)
     print(f"Saving the data == DATA/{file_name}")
-    df.to_csv(f"DATA/{file_name}")
+    df.to_csv(f"DATA/{file_name}", index=False)
 
 # columns_lab = ["a", "b", "c"]
 # X_val = [[1,2],[3,4],[5,6],[7,8],[9, 10]]

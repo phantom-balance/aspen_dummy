@@ -10,6 +10,6 @@ class loader(Dataset):
     def __len__(self):
         return len(self.data)
     def __getitem__(self, index):
-        X=self.data[:,:-1][index]
-        Y=self.data[:,-1:][index]
+        X=self.data[:,:-2][index]
+        Y=self.data[:,-2:][index]
         return (X, Y)
