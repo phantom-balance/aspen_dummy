@@ -40,3 +40,60 @@ X_val = latin_hypercube_sample(bounds, num_samples=10, seed=42)
 print(X_val)
 
 x, y = sim.sampling(X_val)
+
+
+'''
+import os
+import numpy as np
+import torch
+import win32com.client as win32
+
+class aspen:
+    def __init__(self, path):
+        self.path = path
+        self.Application = win32.gencache.EnsureDispatch("Apwn.Document")
+        self.Application.InitFromArchive2(os.path.abspath(path))
+        
+    def start_up(self):
+        self.Application = win32.gencache.EnsureDispatch("Apwn.Document")
+        self.Application.InitFromArchive2(os.path.abspath(self.path))
+        self.Application.Engine.Run2()
+
+    def close(self):
+        self.Application.Close(os.path.abspath(self.path))
+
+    def Reinit(self):
+        self.Application.Reinit()
+      
+    def print_val(self, nodes):
+        for i in range(len(nodes)):
+            print(self.Application.Tree.FindNode(nodes[i]).Value)
+
+    def single_play(self,X_node, Y_node, X_val):
+        # self.Application.Engine.Run2()
+        Y_val=[]
+        for i in range(len(X_node)):
+            self.Application.Tree.FindNode(X_node[i]).Value=X_val[i]
+
+        self.Application.Engine.Run2()
+        for i in range(len(Y_node)):
+            Y_val.append(self.Application.Tree.FindNode(Y_node[i]).Value)
+
+        return X_val, Y_val
+    def sampling(self, X_node, Y_node, X_val):
+        Y_val=[]
+        for i in range(len(X_val)):
+            for j in range(len(X_node)):
+                self.Application.Tree.FindNode(X_node[i]).Value=X_val[i][j]
+            self.Application.Engine.Run2()
+            temp_Y = []
+            for k in range(len(Y_node)):
+                temp_Y.append(self.Application.Tree.FindNode(Y_node[i]).Value)
+            Y_val.append(temp_Y)
+            
+        return X_val, Y_val
+    
+# file_name="002_recreate.bkp"
+# sim=aspen(path=file_name)
+
+'''

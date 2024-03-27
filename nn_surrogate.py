@@ -9,8 +9,8 @@ from torch.utils.data import DataLoader
 class NN_surrogate(nn.Module):
     def __init__(self, input_size, output_size):
         super().__init__()
-        self.fc1 = nn.Linear(input_size, 3)
-        self.fc2 = nn.Linear(3, 3)
+        self.fc1 = nn.Linear(input_size, 4)
+        self.fc2 = nn.Linear(4, 3)
         self.fc3 = nn.Linear(3, output_size)
     
     def forward(self, x):
